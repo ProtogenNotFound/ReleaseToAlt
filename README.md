@@ -2,6 +2,10 @@
 
 A fully modular and interactive CLI tool to securely pull repositories from a primary GitHub account, anonymize their commit history, and release them to an alternate GitHub account.
 
+### Disclaimer
+
+> This thing (including the README) is entirely vibecoded - I'll look over the code and fix issues I can find but some shit might not work that well. 
+
 ## Prerequisites
 
 Before using this tool, you must ensure the following are installed:
