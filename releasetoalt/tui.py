@@ -209,3 +209,32 @@ def select_identities_prompt(identities: List[Dict], previous_whitelist: List[st
     console.print(f"[red]Replacing {len(new_blacklist)} identities.[/red]")
     
     return new_whitelist, new_blacklist
+
+def repo_exists_prompt(repo_name: str) -> str:
+    """Prompt user when a repo config already exists during a save."""
+    console.print(f"\n[yellow]Configuration for repository '{repo_name}' already exists.[/yellow]")
+    
+    choice = inquirer.select(
+        message="How would you like to proceed?",
+        choices=[
+            {"name": "🔄 Overwrite (Replace existing configuration)", "value": "overwrite"},
+            {"name": "🔀 Merge (Combine identities and resolve conflicts)", "value": "merge"},
+            {"name": "❌ Ignore (Skip saving for this repository)", "value": "ignore"}
+        ]
+    ).execute()
+    
+    return choice
+
+def merge_privacy_prompt(repo_name: str, current_vis: str, new_vis: str) -> str:
+    """Prompt user when merging repos and their visibility settings conflict."""
+    console.print(f"\n[yellow]Privacy conflict for '{repo_name}':[/yellow] Currently '{current_vis}', new is '{new_vis}'.")
+    
+    choice = inquirer.select(
+        message="Which visibility should be saved?",
+        choices=[
+            {"name": f"Current: {current_vis}", "value": current_vis},
+            {"name": f"New: {new_vis}", "value": new_vis}
+        ]
+    ).execute()
+    
+    return choice
