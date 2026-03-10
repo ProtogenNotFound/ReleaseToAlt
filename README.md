@@ -4,7 +4,9 @@ A fully modular and interactive CLI tool to securely pull repositories from a pr
 
 ### Disclaimer
 
-> This thing (including the README) is entirely vibecoded - I'll look over the code and fix issues I can find but some shit might not work that well. 
+> This thing (including the README) is entirely vibecoded - I'll look over the code and fix issues I can find but some shit might not work that well. I did however verify that it works (for me at least) by also publishing this thing to my main and running this thing to rerelease it here.
+
+> This thing force pushes to your alt, so ALL changes to your working repo will be overwritten. Make sure you don't i.e. edit the README or something on your alt repo if you want to keep those changes.
 
 ## Prerequisites
 
