@@ -1,4 +1,5 @@
 import subprocess
+import sys
 import logging
 from pathlib import Path
 from typing import List, Dict
@@ -81,7 +82,7 @@ if {committer_condition}:
     
     try:
         subprocess.run(
-            ["git", "filter-repo", "--force", "--commit-callback", callback_code],
+            [sys.executable, "-m", "git_filter_repo", "--force", "--commit-callback", callback_code],
             cwd=repo_path,
             check=True,
             text=True,

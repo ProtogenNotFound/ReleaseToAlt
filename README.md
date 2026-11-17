@@ -11,13 +11,10 @@ A fully modular and interactive CLI tool to securely pull repositories from a pr
 ## Prerequisites
 
 Before using this tool, you must ensure the following are installed:
-1. **[GitHub CLI (`gh`)](https://cli.github.com/)**: You must log in to **both** your main and alt accounts. This tool manages switching between user contexts.
+1. **[Git](https://git-scm.com/) 2.36+**: Required for cloning, rewriting, and pushing repositories.
+2. **[GitHub CLI (`gh`)](https://cli.github.com/)**: You must log in to **both** your main and alt accounts. This tool manages switching between user contexts.
    ```bash
    gh auth login
-   ```
-2. **[Git Filter-Repo](https://github.com/newren/git-filter-repo)**: Used for rewriting commit history securely and efficiently.
-   ```bash
-   pip install git-filter-repo
    ```
 3. **Python 3.7+**
 
@@ -31,7 +28,19 @@ cd ReleaseToAlt
 pip install -e .
 ```
 
-This will link the CLI entry point so you can run `releasetoalt` from anywhere.
+This installs all Python dependencies, including **[git-filter-repo](https://github.com/newren/git-filter-repo)**, and links the CLI entry point so you can run `releasetoalt` from anywhere. Git and GitHub CLI must still be installed separately and authenticated as described above.
+
+History rewriting runs `git_filter_repo` using the same Python interpreter as `releasetoalt`, so it does not depend on a separate `git-filter-repo` executable being on `PATH`. If you already installed an older version, rerun `pip install -e .` from the repository root to install the added dependency.
+
+### Tests
+
+After installation, run the regression tests from the repository root:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The tests rewrite only a temporary local repository; they do not access GitHub.
 
 ## Usage
 
